@@ -10,7 +10,10 @@ defmodule Thunder.Mixfile do
 
   # Configuration for the OTP application
   def application do
-    [mod: { Thunder, [] }]
+    [
+      mod: { Thunder, [] },
+      applications: [:cowboy]
+    ]
   end
 
   # Returns the list of dependencies in the format:
@@ -19,6 +22,8 @@ defmodule Thunder.Mixfile do
   # To specify particular versions, regardless of the tag, do:
   # { :barbat, "~> 0.1", github: "elixir-lang/barbat" }
   defp deps do
-    []
+    [
+      {:cowboy, "0.9.0", github: "extend/cowboy"}
+    ]
   end
 end
