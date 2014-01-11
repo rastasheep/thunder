@@ -1,5 +1,12 @@
 defmodule Thunder.Router do
 
+  def match_path(path) do
+    parsed_path = Thunder.Router.Path.parse(path)
+    routes = Thunder.Router.Routes.routes
+
+    Enum.find routes, fn(route) -> match(parsed_path, route) end
+  end
+
   def match([], []) do
     true
   end
