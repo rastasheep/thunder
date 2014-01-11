@@ -3,6 +3,62 @@ defmodule Thunder.RouterTest do
 
   require Thunder.Router, as: R
 
+  test "match / <=> /" do
+    path = R.parse_path_pattern("/")
+    path_pattern = R.parse_path_pattern("/")
+
+    assert R.match(path, path_pattern) == true
+  end
+
+  test "match /albums <=> /albums" do
+    path = R.parse_path_pattern("/albums")
+    path_pattern = R.parse_path_pattern("/albums")
+
+    assert R.match(path, path_pattern) == true
+  end
+
+  test "match /albums/new <=> /albums/new" do
+    path = R.parse_path_pattern("/albums/new")
+    path_pattern = R.parse_path_pattern("/albums/new")
+
+    assert R.match(path, path_pattern) == true
+  end
+
+  test "match /albums/12 <=> /albums/:id" do
+    path = R.parse_path_pattern("/albums/new")
+    path_pattern = R.parse_path_pattern("/albums/:id")
+
+    assert R.match(path, path_pattern) == true
+  end
+
+  test "match /albums/12/edit <=> /albums/:id/edit" do
+    path = R.parse_path_pattern("/albums/12/edit")
+    path_pattern = R.parse_path_pattern("/albums/:id/edit")
+
+    assert R.match(path, path_pattern) == true
+  end
+
+  test "match /albums/12/edit <=> /albums" do
+    path = R.parse_path_pattern("/albums/12/edit")
+    path_pattern = R.parse_path_pattern("/albums")
+
+    assert R.match(path, path_pattern) == false
+  end
+
+  test "match /albums <=> /albums/:id/edit" do
+    path = R.parse_path_pattern("/albums")
+    path_pattern = R.parse_path_pattern("/albums/:id/edit")
+
+    assert R.match(path, path_pattern) == false
+  end
+
+  test "match /albums/12/photos/1 <=> /albums/:album_id/photos/:id" do
+    path = R.parse_path_pattern("/albums/12/photos/1")
+    path_pattern = R.parse_path_pattern("/albums/:album_id/photos/:id")
+
+    assert R.match(path, path_pattern) == true
+  end
+
   test "parse_path_pattern /albums" do
     path = "/albums"
 
