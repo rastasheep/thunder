@@ -35,37 +35,37 @@ defmodule Thunder.RouterTest do
                                           segment: "photos", binding: "id", segment: "edit"]
   end
 
-  test "no segments" do
+  test "parse no segments" do
     path = ""
 
     assert R.parse(path) == []
   end
 
-  test "no segments just slash" do
+  test "parse no segments just slash" do
     path = "/"
 
     assert R.parse(path) == []
   end
 
-  test "no segments just two slashes" do
+  test "parse no segments just two slashes" do
     path = "//"
 
     assert R.parse(path) == []
   end
 
-  test "two segments" do
+  test "parse two segments" do
     path = "/albums/123"
 
     assert R.parse(path) == ["albums", "123"]
   end
 
-  test "two segments without leading slash" do
+  test "parse two segments without leading slash" do
     path = "albums/123"
 
     assert R.parse(path) == ["albums", "123"]
   end
 
-  test "two segments with traling slash" do
+  test "parse two segments with traling slash" do
     path = "/albums/123/"
 
     assert R.parse(path) == ["albums", "123"]
