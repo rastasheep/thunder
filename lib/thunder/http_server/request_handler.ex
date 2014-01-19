@@ -8,6 +8,8 @@ defmodule Thunder.RequestHandler do
     {path, _} = :cowboy_req.path(req)
 
     response = "You have requested: #{path}"
+    match = Thunder.Router.match_path(path)
+    IO.puts inspect(match)
 
     :cowboy_req.reply(200, [], response, req)
     {:ok, req, state}
