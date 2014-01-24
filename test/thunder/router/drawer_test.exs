@@ -28,4 +28,29 @@ defmodule Thunder.Router.DrawerTest do
     assert ResourcesRoutesTest.all == expected_routes
   end
 
+  defmodule SingleRouteTest do
+    use Thunder.Router.Drawer
+
+    draw get("/", [to: "pages#index"])
+  end
+
+  test "single route" do
+    expected_routes = [[method: "GET", path: "/", controller: :pages, action: :index]]
+
+    assert SingleRouteTest.all == expected_routes
+  end
+
+  defmodule SecondSingleRouteTest do
+    use Thunder.Router.Drawer
+
+    draw get("/", [to: "pages#index"])
+      |> get("/contact", [to: "pages#contact"])
+  end
+
+  test "second single route" do
+    expected_routes = [[method: "GET", path: "/", controller: :pages, action: :index]]
+
+    assert SingleRouteTest.all == expected_routes
+  end
+
 end
