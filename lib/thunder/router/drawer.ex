@@ -6,6 +6,8 @@ defmodule Thunder.Router.Drawer do
     quote do
       import Thunder.Router.Drawer, only: [resources: 1,
                                            resources: 2,
+                                           get: 2,
+                                           get: 3,
                                            draw: 1]
     end
   end
@@ -24,6 +26,14 @@ defmodule Thunder.Router.Drawer do
 
   def resources(routes, resource_name) do
     Enum.concat(routes, Mapper.resources_routes(resource_name))
+  end
+
+  def get(path_pattern, mapping) do
+    Mapper.get_route(path_pattern, mapping)
+  end
+
+  def get(routes, path_pattern, mapping) do
+    Enum.concat(routes, Mapper.get_route(path_pattern, mapping))
   end
 
 end
