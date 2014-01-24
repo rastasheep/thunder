@@ -7,11 +7,11 @@ defmodule Thunder.RequestHandler do
   def handle(req, state) do
     {path, _} = :cowboy_req.path(req)
 
-    response = "You have requested: #{path}"
-    match = Thunder.Router.match_path(path)
-    IO.puts inspect(match)
+    route = Thunder.Router.match_path(path)
 
-    :cowboy_req.reply(200, [], response, req)
+    {status_code, response} = Thunder.ActionDispatch.dispatch(route)
+
+    :cowboy_req.reply(status_code, [], response, req)
     {:ok, req, state}
   end
 

@@ -2,9 +2,14 @@ defmodule Thunder.Router do
 
   def match_path(path) do
     parsed_path = Thunder.Router.Path.parse(path)
-    routes = Thunder.Router.Routes.routes
+    routes = Config.Routes.all
 
-    Enum.find routes, fn(route) -> match(parsed_path, route) end
+    Enum.find routes, fn(route) ->
+      {:ok, path_pattern} = Dict.fetch(route, :path)
+      parsed_path_pattern = Thunder.Router.PathPattern.parse(path_pattern)
+
+      match(parsed_path, parsed_path_pattern)
+    end
   end
 
   def match([], []) do
