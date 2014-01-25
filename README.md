@@ -17,7 +17,7 @@ After cloning repository you would need to perform very standard steps for mix p
 
 ## Contributing
 
-Of course all contibutions are welcome. Features, bug fixes, documentation, blogging etc. If you are interested in contributing but you are unsure what would be good thing to work on feel free to ask on [mailing list](https://groups.google.com/forum/#!forum/thunder-talk) or [send me an email](https://github.com/darkofabijan). If you are interesting in what has been developed so far please check [blog](http://thunder-ex.github.io/). I also tend to be systematic on development and not to commit in master but to create branch for each contribution, so closed pull requests should also give clear overview. 
+Of course all contibutions are welcome. Features, bug fixes, documentation, blogging etc. If you are interested in contributing but you are unsure what would be good thing to work on feel free to ask on [mailing list](https://groups.google.com/forum/#!forum/thunder-talk) or [send me an email](https://github.com/darkofabijan). If you are interesting in what has been developed so far please check [blog](http://thunder-ex.github.io/). I also tend to be systematic on development in a way that I create pull request so all new code can be discusses and referenced in blog posts. 
 
 ## License
 
